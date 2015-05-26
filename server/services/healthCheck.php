@@ -1,0 +1,3 @@
+<?php
+  $PAGE->id='healthy';
+?>
