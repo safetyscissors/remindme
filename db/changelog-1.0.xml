@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+  http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+  <changeSet id="Users1" author="andrew" runOnChange="true">
+    <comment>
+      Create table statement for users. This table stores login info
+    </comment>
+
+    <createTable tableName="Users">
+
+      <column name="Id" type="int" autoIncrement="true">
+        <constraints nullable="false" primaryKey="true" />
+      </column>
+
+      <column name="LoginName" type="varchar(255)">
+      </column>
+
+      <column name="UserName" type="varchar(255)">
+      </column>
+
+      <column name="Email" type="varchar(255)">
+      </column>
+
+      <column name="Phone" type="varchar(255)">
+      </column>
+
+      <column name="PasswordHash" type="binary(60)">
+      </column>
+
+    </createTable>
+  </changeSet>
+
+  <changeSet id="Lists1" author="andrew" runOnChange="true">
+    <comment>
+      Create table statement for lists. This table stores all lists by user
+    </comment>
+
+    <createTable tableName="Lists">
+
+      <column name="Id" type="int" autoIncrement="true">
+        <constraints nullable="false" primaryKey="true" />
+      </column>
+
+      <column name="UserId" type="int">
+        <constraints nullable="false" foreignKeyName="ListsUsersFk" references="Users(Id)" deleteCascade="true" />
+      </column>
+
+      <column name="Type" type="varchar(255)">
+      </column>
+
+      <column name="Name" type="varchar(255)">
+      </column>
+
+      <column name="Description" type="varchar(255)">
+      </column>
+
+      <column name="SortOrder" type="int">
+      </column>
+
+      <column name="DateCreated" type="datetime">
+      </column>
+
+      <column name="DateUpdated" type="datetime">
+      </column>
+
+    </createTable>
+  </changeSet>
+
+
+
+  <changeSet id="ListItems1" author="andrew" runOnChange="true">
+    <comment>
+      Create table statement for list items. This table stores the item and the response values
+    </comment>
+
+    <createTable tableName="ListItems">
+
+      <column name="Id" type="int" autoIncrement="true">
+        <constraints nullable="false" primaryKey="true" />
+      </column>
+
+      <column name="ListId" type="int">
+        <constraints nullable="false" foreignKeyName="ListItemsListFk" references="Lists(Id)" deleteCascade="true" />
+      </column>
+
+      <column name="UserId" type="int">
+        <constraints nullable="false" foreignKeyName="ListItemsUserFk" references="Users(Id)" deleteCascade="true" />
+      </column>
+
+      <column name="Type" type="varchar(255)">
+      </column>
+
+      <column name="Name" type="varchar(255)">
+      </column>
+
+      <column name="Description" type="varchar(255)">
+      </column>
+
+      <column name="Value" type="varchar(255)">
+      </column>
+
+      <column name="IsChecked" type="BOOLEAN">
+      </column>
+
+      <column name="Color" type="varchar(255)">
+      </column>
+
+      <column name="SortOrder" type="int">
+      </column>
+
+      <column name="DateUpdated" type="datetime">
+      </column>
+
+    </createTable>
+  </changeSet>
+
+  <changeSet id="Contacts1" author="andrew" runOnChange="true">
+    <comment>
+      Create table statement for contact information. This table is used to contact people and track whitelist/blacklist responses
+    </comment>
+
+    <createTable tableName="Contacts">
+
+      <column name="Id" type="int" autoIncrement="true">
+        <constraints nullable="false" primaryKey="true" />
+      </column>
+
+      <column name="UserId" type="int">
+        <constraints nullable="false" foreignKeyName="ContactsUsersFk" references="Users(Id)" deleteCascade="true" />
+      </column>
+
+      <column name="Email" type="varchar(255)">
+      </column>
+
+      <column name="PhoneNumber" type="varchar(255)">
+      </column>
+
+      <column name="Salt" type="varchar(255)">
+      </column>
+
+      <column name="WhiteList" type="boolean">
+      </column>
+
+      <column name="BlackList" type="boolean">
+      </column>
+
+      <column name="DateAdded" type="datetime">
+      </column>
+
+      <column name="DateResponded" type="datetime">
+      </column>
+
+    </createTable>
+  </changeSet>
+
+  <changeSet id="Triggers1" author="andrew" runOnChange="true">
+    <comment>
+      Create table statement for contact information. This table is used to contact people and track whitelist/blacklist responses
+    </comment>
+
+    <createTable tableName="Triggers">
+
+      <column name="Id" type="int" autoIncrement="true">
+        <constraints nullable="false" primaryKey="true" />
+      </column>
+
+      <column name="UserId" type="int">
+        <constraints nullable="false" foreignKeyName="TriggersUsersFk" references="Users(Id)" deleteCascade="true" />
+      </column>
+
+      <column name="ListId" type="int">
+        <constraints nullable="false" foreignKeyName="TriggersListsFk" references="Lists(Id)" deleteCascade="true" />
+      </column>
+
+      <column name="Action" type="varchar(255)">
+      </column>
+
+      <column name="Type" type="varchar(255)">
+      </column>
+
+      <column name="ContactId" type="int">
+        <constraints nullable="true" foreignKeyName="TriggersContactsFk" references="Contacts(Id)" deleteCascade="true" />
+      </column>
+
+      <column name="Message" type="varchar(255)">
+      </column>
+
+      <column name="SendMethod" type="varchar(255)">
+      </column>
+
+      <column name="Weekday" type="varchar(255)">
+      </column>
+
+      <column name="WeekdayFrequency" type="varchar(255)">
+      </column>
+
+      <column name="Date" type="varchar(255)">
+      </column>
+
+      <column name="Time" type="varchar(255)">
+      </column>
+
+      <column name="ListItemId" type="int">
+        <constraints nullable="true" foreignKeyName="TriggersListItemsFk" references="ListItems(Id)" deleteCascade="true" />
+      </column>
+
+      <column name="DateAdded" type="datetime">
+      </column>
+
+      <column name="DateLastRun" type="datetime">
+      </column>
+
+      <column name="DateNextRun" type="datetime">
+      </column>
+
+    </createTable>
+  </changeSet>
+
+</databaseChangeLog>
