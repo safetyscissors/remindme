@@ -1,1 +1,0 @@
-web index <?php echo ($PAGE->id) ?>
