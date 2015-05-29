@@ -3,6 +3,8 @@
 /* ********************************************************************* *\
         MAIN SERVER
 \* ********************************************************************* */
+  //setup database connection
+  require('dbConfig.php');
 
   //setup global object
   $USER = new stdClass();
@@ -15,6 +17,9 @@
   //get path to a service
   $service = getRoute(getUri());
 
+  //set the debug flag
+  $SERVERDEBUG = setDebug();
+
   //exit with msg if path doesnt exist
   if($service==false) return errorHandler('Invalid Path', 501);
 
@@ -22,12 +27,24 @@
   require($service);
 
   //if debug, dump server response
-  echo json_encode($PAGE); return;
+  if($SERVERDEBUG){
+    echo "\r\n page:";
+    echo json_encode($PAGE); return;
+  }
+
+  //at the end of it all, close db
+  $DB->close();
 
 
 /* ********************************************************************* *\
           HELPER FUNCTIONS
 \* ********************************************************************* */
+  function setDebug(){
+    if($_GET['debug']){
+      return true;
+    }
+    return false;
+  }
 
   /*
     Reads a method:path string and returns a path to a service OR false
@@ -41,7 +58,11 @@
       case "get:":
       case "get:index.php": return "$serviceDir/main.php";
       case "get:healthcheck": return "$serviceDir/healthCheck.php";
-      case "post:createlist": return "$serviceDir/createList.php";
+
+      case "post:list": return "$serviceDir/listCreate.php";
+      case "get:list" : return "$serviceDir/listGet.php";
+      case "put:list" : return "$serviceDir/listPut.php";
+      case "delete:list" : return "$serviceDir/listDelete.php";
     }
     return false;
   }
@@ -79,8 +100,9 @@
     Prints a message, sets the response error code
   */
   function errorHandler($message, $code){
-    echo $message;
+    echo "{errors:'$message'}";
     http_response_code($code);
+    return false;
   }
 
 ?>
