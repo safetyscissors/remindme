@@ -40,7 +40,7 @@
           HELPER FUNCTIONS
 \* ********************************************************************* */
   function setDebug(){
-    if($_GET['debug']){
+    if($_GET['debug']=="true"){
       return true;
     }
     return false;
@@ -61,7 +61,7 @@
 
       case "post:list": return "$serviceDir/listCreate.php";
       case "get:list" : return "$serviceDir/listGet.php";
-      case "put:list" : return "$serviceDir/listPut.php";
+      case "put:list" : return "$serviceDir/listUpdate.php";
       case "delete:list" : return "$serviceDir/listDelete.php";
     }
     return false;

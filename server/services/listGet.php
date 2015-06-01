@@ -23,21 +23,6 @@
     array_push($listResults, $row);
   }
   echo json_encode($listResults);
-  /*
-  $listResults = array();
-  echo 'n';
-  $result = mysqli_stmt_get_result($stmt);
-  echo 'h';
-  while ($row = $result->fetch_array(MYSQLI_NUM)){
-    $data = array();
-    foreach ($row as $key=>$field){
-
-    }
-    array_push($listResults,$data);
-  }
-  echo json_encode($listResults);
-*/
-
 
 
 
