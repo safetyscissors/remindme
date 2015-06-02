@@ -5,14 +5,12 @@
   $fields=array('listid','type','name','description','datecreated','dateupdated');
   $requiredFields=array('listid','type','name');
   $inputs=array();
-
-  parse_str(file_get_contents("php://input"),$putVar);
-  echo json_encode($putVar);
+  parse_str(file_get_contents("php://input"),$_PUT);
 
   //check POST object for variables from front end
   foreach($fields as $postKey){
-    if(isset($_POST[$postKey])){
-      $inputs[$postKey]=$_POST[$postKey];
+    if(isset($_PUT[$postKey])){
+      $inputs[$postKey]=$_PUT[$postKey];
     }
   }
 
@@ -37,5 +35,9 @@
   $stmt = updateList($DB, $USER->id, $inputs['listid'], $inputs['type'], $inputs['name'], $inputs['description']);
   if(!$stmt) return; // createNewList already send error.
   if(!$stmt->execute()) return errorHandler("failed to create this list $stmt->errno: $stmt->error");
+
+  if($stmt->affected_rows != 1){
+    return errorHandler("Updated $stmt->affected_rows rows", 503);
+  }
 
 ?>

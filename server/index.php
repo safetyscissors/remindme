@@ -100,7 +100,7 @@
     Prints a message, sets the response error code
   */
   function errorHandler($message, $code){
-    echo "{errors:'$message'}";
+    echo '{"errors":"'.$message.'"}';
     http_response_code($code);
     return false;
   }
