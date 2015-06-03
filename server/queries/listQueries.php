@@ -32,6 +32,5 @@
       return errorHandler("deleteList failed to bind parameter", 503);
     }
     return $stmt;
-
   }
 ?>

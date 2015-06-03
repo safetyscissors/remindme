@@ -10,6 +10,7 @@ $('#listItemGet').on('click', function(){
 $('#listItemPost').on('click', function(){
   console.log('post');
   var data = {
+    listid:1,
     name:'item1',
     type:'checkbox'
   };
@@ -20,6 +21,7 @@ $('#listItemPut').on('click', function(){
   console.log('put');
   var data = {
     listid:1,
+    itemid:1,
     name:'newItem',
     type:'checkbox'
   };
@@ -29,7 +31,8 @@ $('#listItemPut').on('click', function(){
 $('#listItemDelete').on('click', function(){
   console.log('delete');
   var data = {
-    listid:2
+    listid:1,
+    itemid:2
   };
   REQUEST.send('listItem','delete', logBack, data);
 });

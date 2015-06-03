@@ -2,8 +2,8 @@
   require('queries/itemQueries.php');
   $PAGE->id='listCreate';
 
-  $fields=array('type','name','description','datecreated','dateupdated');
-  $requiredFields=array('type','name');
+  $fields=array('listid','type','name','description','value','ischecked','color','sortorder','dateupdated');
+  $requiredFields=array('listid','type','name');
   $inputs=array();
 
   //check POST object for variables from front end
@@ -30,7 +30,9 @@
   }
 
   //setup for query
-  $stmt = createNewList($DB, $USER->id, $inputs['type'], $inputs['name'], $inputs['description']);
+  $stmt = createNewItem($DB, $inputs['listid'], $USER->id, $inputs['type'], $inputs['name'], $inputs['description']);
   if(!$stmt) return; // createNewList already send error.
   if(!$stmt->execute()) return errorHandler("failed to create this list $stmt->errno: $stmt->error");
+  echo '{"id":"'.$stmt->insert_id.'"}';
+
 ?>

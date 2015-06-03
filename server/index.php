@@ -63,6 +63,11 @@
       case "get:list" : return "$serviceDir/listGet.php";
       case "put:list" : return "$serviceDir/listUpdate.php";
       case "delete:list" : return "$serviceDir/listDelete.php";
+
+      case "post:listitem": return "$serviceDir/itemCreate.php";
+      case "get:listitem": return "$serviceDir/itemGet.php";
+      case "put:listitem": return "$serviceDir/itemUpdate.php";
+      case "delete:listitem": return "$serviceDir/itemDelete.php";
     }
     return false;
   }

@@ -26,5 +26,6 @@
   <script src='web/src/jquery-1.11.2.js'></script>
   <script src='web/src/request.js'></script>
   <script src='web/src/lists.js'></script>
+  <script src='web/src/listItems.js'></script>
 </body>
 </html>
