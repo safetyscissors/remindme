@@ -23,8 +23,18 @@
   <button id='listItemPut'>put listItem</button><br>
   <button id='listItemDelete'>delete listItem</button>
 
+  <br><br>
+
+  <button id='userGet'>get user</button><br>
+  <button id='userPost'>post user</button><br>
+  <button id='userPut'>put user</button><br>
+  <button id='userDelete'>delete user</button>
+
+
+
   <script src='web/src/jquery-1.11.2.js'></script>
   <script src='web/src/request.js'></script>
+  <script src='web/src/users.js'></script>
   <script src='web/src/lists.js'></script>
   <script src='web/src/listItems.js'></script>
 </body>

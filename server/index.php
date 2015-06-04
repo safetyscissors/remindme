@@ -68,6 +68,14 @@
       case "get:listitem": return "$serviceDir/itemGet.php";
       case "put:listitem": return "$serviceDir/itemUpdate.php";
       case "delete:listitem": return "$serviceDir/itemDelete.php";
+
+      case "post:user": return "$serviceDir/userCreate.php";
+      case "get:user": return "$serviceDir/userGet.php";
+      case "put:user": return "$serviceDir/userUpdate.php";
+      case "delete:user": return "$serviceDir/userDelete.php";
+
+      case "post:auth": return "$serviceDir/authVerify.php";
+      case "put:auth": return "$serviceDir/authReset.php";
     }
     return false;
   }

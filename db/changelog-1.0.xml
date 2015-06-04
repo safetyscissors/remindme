@@ -26,10 +26,16 @@
       <column name="Email" type="varchar(255)">
       </column>
 
+      <column name="VerifiedEmail" type="varchar(255)">
+      </column>
+
       <column name="Phone" type="varchar(255)">
       </column>
 
-      <column name="PasswordHash" type="binary(60)">
+      <column name="VerifiedPhone" type="varchar(255)">
+      </column>
+
+      <column name="PasswordHash" type="varchar(60)">
       </column>
 
     </createTable>
