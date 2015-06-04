@@ -74,8 +74,10 @@
       case "put:user": return "$serviceDir/userUpdate.php";
       case "delete:user": return "$serviceDir/userDelete.php";
 
-      case "post:auth": return "$serviceDir/authVerify.php";
-      case "put:auth": return "$serviceDir/authReset.php";
+      case "get:auth": return "$serviceDir/authCheck.php";
+      case "post:auth": return "$serviceDir/authLogin.php";
+      case "put:auth": return "$serviceDir/authNewPassword.php";
+      case "delete:auth": return "$serviceDir/authLogout.php";
     }
     return false;
   }

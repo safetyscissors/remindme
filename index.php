@@ -30,6 +30,12 @@
   <button id='userPut'>put user</button><br>
   <button id='userDelete'>delete user</button>
 
+  <br><br>
+
+  <button id='authGet'>is authed</button><br>
+  <button id='authPost'>login</button><br>
+  <button id='authPut'>change password</button><br>
+  <button id='authDelete'>logout</button>
 
 
   <script src='web/src/jquery-1.11.2.js'></script>
