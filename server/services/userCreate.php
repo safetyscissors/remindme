@@ -1,4 +1,5 @@
 <?php
+  require('authCheck.php');
   require('queries/userQueries.php');
   $PAGE->id='userCreate';
 

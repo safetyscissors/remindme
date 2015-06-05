@@ -10,8 +10,8 @@ $('#authGet').on('click', function(){
 $('#authPost').on('click', function(){
   console.log('post');
   var data = {
-    userid:1,
-    password:'asdf'
+    email:'asdf@asdf.com',
+    password:'newpass'
   };
 
   REQUEST.send('auth','post', logBack, data);

@@ -1,4 +1,5 @@
 <?php
+  require('authCheck.php');
   require('queries/itemQueries.php');
   $PAGE->id='itemDelete';
 

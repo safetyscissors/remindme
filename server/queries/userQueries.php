@@ -1,4 +1,8 @@
 <?php
+/* ************************************************************* *\
+                    USER SERVICE FUNCTIONS
+\* ************************************************************* */
+
 	function getUser($DB, $uid){
     $stmt = $DB->prepare("SELECT Id,UserName,Email,Phone,PasswordHash FROM Users WHERE Id = ?");
     if(!$stmt->bind_param('i', $uid)){
@@ -29,6 +33,27 @@
     $stmt = $DB->prepare("DELETE FROM Users WHERE Id=?");
     if(!$stmt->bind_param('i', $uid)){
       return errorHandler("deleteItem failed to bind parameter", 503);
+    }
+    return $stmt;
+  }
+
+/* ************************************************************* *\
+                    AUTH SERVICE FUNCTIONS
+\* ************************************************************* */
+
+  function getUserByEmail($DB, $email){
+    $stmt = $DB->prepare("SELECT Id,UserName,PasswordHash FROM Users WHERE Email = ?");
+    if(!$stmt->bind_param('s', $email)){
+      return errorHandler("getUsers failed to bind parameter", 503);
+    }
+    return $stmt;
+  }
+
+  function updateUserPassword($DB, $uid, $passwordHash){
+    $stmt = $DB->prepare("UPDATE Users SET PasswordHash=? WHERE Id=?");
+    
+    if(!$stmt->bind_param('si', $passwordHash, $uid)){
+      return errorHandler("updateList failed to bind parameter", 503);
     }
     return $stmt;
   }

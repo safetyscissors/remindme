@@ -1,4 +1,5 @@
 <?php
+  require('authCheck.php');
   require('queries/listQueries.php');
   $PAGE->id='listGet';
 

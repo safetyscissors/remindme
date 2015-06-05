@@ -43,5 +43,6 @@
   <script src='web/src/users.js'></script>
   <script src='web/src/lists.js'></script>
   <script src='web/src/listItems.js'></script>
+  <script src='web/src/auth.js'></script>
 </body>
 </html>

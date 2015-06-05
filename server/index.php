@@ -3,16 +3,15 @@
 /* ********************************************************************* *\
         MAIN SERVER
 \* ********************************************************************* */
+  //setup session 
+  session_start();
+
   //setup database connection
   require('dbConfig.php');
 
   //setup global object
   $USER = new stdClass();
   $PAGE = new stdClass();
-
-  //until login is working,
-  $USER->id=1;
-  $USER->name='andrew';
 
   //get path to a service
   $service = getRoute(getUri());
