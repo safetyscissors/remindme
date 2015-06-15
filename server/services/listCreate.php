@@ -1,6 +1,6 @@
 <?php
   require('authCheck.php');
-  require('queries/itemQueries.php');
+  require('queries/listQueries.php');
   $PAGE->id='listCreate';
 
   $fields=array('type','name','description','datecreated','dateupdated');
@@ -34,4 +34,5 @@
   $stmt = createNewList($DB, $USER->id, $inputs['type'], $inputs['name'], $inputs['description']);
   if(!$stmt) return; // createNewList already send error.
   if(!$stmt->execute()) return errorHandler("failed to create this list $stmt->errno: $stmt->error");
+
 ?>

@@ -1,0 +1,21 @@
+<html ng-app='jsonApp'>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.min.js"></script>
+        <script src="modules/jsonTest.js"></script>
+    </head>
+    <body>
+        <div ng-controller="Lists">
+            {{errorMessage}}
+            <ul>
+                <li ng-repeat="list in listOfLists">{{list.Name}} {{list.Description}}</li>
+            </ul>
+
+            <ul>
+                <li ng-repeat="item in listItems">{{item.Name}} {{item.Type}}</li>
+            </ul>
+
+        </div>
+    </body>
+
+
+</html>
