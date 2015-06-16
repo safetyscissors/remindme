@@ -1,18 +1,41 @@
 <html ng-app='jsonApp'>
     <head>
+        {{loginState}}
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.min.js"></script>
+        <script src="../node_modules/angular-ui-router/build/angular-ui-router.min.js"></script>
         <script src="modules/jsonTest.js"></script>
     </head>
     <body>
+        <div ng-controller="Auth">
+            <span ng-show="loginState"><a ng-click="logout()">logout</a></span>
+            <form ng-hide="loginState" ng-submit="auth()">
+                <input type="text" ng-model="username"><br>
+                <input type="password" ng-model="password"><br>
+                <input type="submit" value="login">
+            </form>
+
+        </div>
         <div ng-controller="Lists">
             {{errorMessage}}
+
             <ul>
-                <li ng-repeat="list in listOfLists">{{list.Name}} {{list.Description}}</li>
+                <li ng-repeat="list in listOfLists">
+                    <span ng-click="loadList(list.Id)">{{list.Name}} {{list.Description}}</span>
+                </li>
             </ul>
 
             <ul>
                 <li ng-repeat="item in listItems">{{item.Name}} {{item.Type}}</li>
             </ul>
+
+            <input type="text" ng-model="listName" placeholder="list name" />
+            <button ng-click="addList()">add list</button><br>
+
+            <input type="text" ng-model="itemName" placeholder="list item" />
+            <button ng-click="addItem()">add item</button>
+
+        </div>
+        <div ng-controller="Lists">
 
         </div>
     </body>
